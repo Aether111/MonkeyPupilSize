@@ -7,7 +7,17 @@ import PIL
 
 st.title("Monkey Pupil Size Application")
 
-video = st.file_uploader("Monkey Video", type=["mp4"], accept_multiple_files=False)
+try:
+    if model:
+        pass
+except:
+    model = utils.get_model()
+
+try:
+    if video:
+        video = None
+except:
+    video = st.file_uploader("Monkey Video", type=["mp4"], accept_multiple_files=False)
 
 if video is not None:
     g = io.BytesIO(video.read())
@@ -17,7 +27,7 @@ if video is not None:
 
     with st.spinner("PROCESSING VIDEO") as s:
 
-        model = utils.get_model()
+        #model = utils.get_model()
 
         pupil_areas = utils.process_video(loc, model)
 
