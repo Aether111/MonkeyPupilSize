@@ -41,6 +41,6 @@ if video is not None:
 
         #st.pyplot(graph, use_container_width=True)
 
-    st.download_button("Download Graphs", data=bytes_image, file_name="output.png", mime="image/jpeg", ):
+    st.download_button("Download Graphs", data=bytes_image, file_name="output.png", mime="image/jpeg", )
     
     #st.download_button("Download Values", pupil_areas)
