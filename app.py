@@ -17,7 +17,7 @@ if video is not None:
 
     with st.spinner("PROCESSING VIDEO") as s:
 
-        #model = utils.get_model()
+        model = utils.get_model()
 
         pupil_areas = utils.process_video(loc, model)
 
