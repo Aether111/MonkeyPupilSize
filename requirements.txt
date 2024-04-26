@@ -1,0 +1,7 @@
+ultralytics==8.0.196
+pillow
+numpy
+matplotlib
+opencv-python
+scipy
+streamlit
