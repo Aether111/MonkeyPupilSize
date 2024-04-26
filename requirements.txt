@@ -2,6 +2,6 @@ ultralytics==8.0.196
 pillow
 numpy
 matplotlib
-cv2
+opencv-python-headless
 scipy
 streamlit
