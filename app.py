@@ -47,13 +47,13 @@ for i in range(len(files)):
             graph = utils.plot_pupil_area(pupil_areas)
     
             buf = io.BytesIO()
-            img = PIL.Image.open("output.png")
+            img = PIL.Image.open(f"output{i}.png")
             img = img.convert("RGB")
             img.save(buf, format="JPEG")
             bytes_image = buf.getvalue()
     
             #st.pyplot(graph, use_container_width=True)
     
-        st.download_button("Download Graphs", data=bytes_image, file_name="output.png", mime="image/jpeg", )
+        st.download_button(f"Download Graph {i+1}", data=bytes_image, file_name="output{i}.png", mime="image/jpeg", )
     
         #st.download_button("Download Values", pupil_areas)
