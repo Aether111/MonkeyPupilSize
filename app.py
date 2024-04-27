@@ -54,6 +54,6 @@ for i in range(len(files)):
     
             #st.pyplot(graph, use_container_width=True)
     
-        st.download_button(f"Download Graph {i+1}", data=bytes_image, file_name="output{i}.png", mime="image/jpeg", )
+        st.download_button(f"Download Graph {i+1}", data=bytes_image, file_name=f"output{i}.png", mime="image/jpeg", )
     
         #st.download_button("Download Values", pupil_areas)
