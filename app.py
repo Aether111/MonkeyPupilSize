@@ -44,7 +44,7 @@ for i in range(len(files)):
     
             pupil_areas = utils.process_video(loc, model)
     
-            graph = utils.plot_pupil_area(pupil_areas)
+            graph = utils.plot_pupil_area(pupil_areas, i)
     
             buf = io.BytesIO()
             img = PIL.Image.open(f"output{i}.png")
