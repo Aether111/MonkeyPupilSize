@@ -30,7 +30,8 @@ if st.button("Clear uploaded files"):
 
 st.write("Uploaded files:", st.session_state["uploaded_files"])
 
-for video in files:
+for i in range(len(files)):
+    video = file[i]
     if video is not None:
         g = io.BytesIO(video.read())
         loc = "current_video.mp4"
