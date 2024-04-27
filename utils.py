@@ -266,7 +266,7 @@ def remove_flat_and_nan_segments(arr, min_flat_length=5):
     else:
         return np.array([]), None  # Return an empty array if all segments are removed
     
-def plot_pupil_area(pupil_areas,fps=30):
+def plot_pupil_area(pupil_areas, save_number, fps=30):
   time_stamps = np.array([f"{np.round(i,2):.2f}" for i in np.linspace(start=0,stop=len(pupil_areas),num=len(pupil_areas)*fps)])
   pupil_areas_cut, kept_indices = remove_flat_and_nan_segments(pupil_areas)
   pupil_areas_cut, kept_indices = pupil_areas_cut[:-1], kept_indices[:-1]
@@ -285,5 +285,5 @@ def plot_pupil_area(pupil_areas,fps=30):
   avg_line = np.repeat(avg,repeats=pupil_areas_cut.shape[0])
   l_bound, u_bound = np.repeat(interval[0],repeats=pupil_areas_cut.shape[0]), np.repeat(interval[1],repeats=pupil_areas_cut.shape[0])
   plt.fill_between(np.arange(0,avg_line.shape[0]),u_bound,l_bound,alpha=0.1,color='green')
-  plt.savefig("output.png")
+  plt.savefig(f"output{save_number}.png")
   return plt.gcf()
