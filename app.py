@@ -22,6 +22,8 @@ files = st.file_uploader(
     key=st.session_state["file_uploader_key"],
 )
 
+to_process = []
+
 if files:
     to_process, st.session_state = loader.get_new_videos(st.session_state, files)
 
