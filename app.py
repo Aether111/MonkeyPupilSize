@@ -62,4 +62,4 @@ for i, video in enumerate(to_process):
             #st.pyplot(graph, use_container_width=True)
     
 for i, bytes_image in enumerate(st.session_state["data"]):
-    st.download_button(f"Download Graph {i+1}", data=bytes_image, file_name=f"output{i}.png", mime="image/jpeg", )
+    st.download_button(f"Download {video.name} Graph", data=bytes_image, file_name=f"output{i}.png", mime="image/jpeg", )
