@@ -1,5 +1,6 @@
 import streamlit as st
 import utils
+import loader
 import matplotlib.pyplot as plt
 import io
 import PIL.Image
@@ -22,7 +23,7 @@ files = st.file_uploader(
 )
 
 if files:
-    st.session_state["uploaded_files"] = files
+    to_process, st.session_state = loader.get_new_videos(st.session_state, files)
 
 if st.button("Clear uploaded files"):
     st.session_state["file_uploader_key"] += 1
@@ -30,8 +31,7 @@ if st.button("Clear uploaded files"):
 
 st.write("Uploaded files:", st.session_state["uploaded_files"])
 
-for i in range(len(files)):
-    video = files[i]
+for i, video in enumerate(to_process):
     if video is not None:
         g = io.BytesIO(video.read())
         loc = "current_video.mp4"
