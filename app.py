@@ -27,6 +27,9 @@ to_process = []
 if files:
     to_process, st.session_state = loader.get_new_videos(st.session_state, files)
 
+if "data" not in st.session_state:
+    st.session_state["data"] = []
+
 if st.button("Clear uploaded files"):
     st.session_state["file_uploader_key"] += 1
     st.experimental_rerun()
@@ -40,7 +43,7 @@ for i, video in enumerate(to_process):
         with open(loc, mode="wb") as f:
             f.write(g.read())
     
-        with st.spinner("PROCESSING VIDEO") as s:
+        with st.spinner(f"PROCESSING {video.name}") as s:
     
             model = utils.get_model()
     
@@ -53,9 +56,10 @@ for i, video in enumerate(to_process):
             img = img.convert("RGB")
             img.save(buf, format="JPEG")
             bytes_image = buf.getvalue()
+
+            st.session_state["data"].append(bytes_image)
     
             #st.pyplot(graph, use_container_width=True)
     
-        st.download_button(f"Download Graph {i+1}", data=bytes_image, file_name=f"output{i}.png", mime="image/jpeg", )
-    
-        #st.download_button("Download Values", pupil_areas)
+for i, bytes_image in enumerate(st.session_state["data"]):
+    st.download_button(f"Download Graph {i+1}", data=bytes_image, file_name=f"output{i}.png", mime="image/jpeg", )
