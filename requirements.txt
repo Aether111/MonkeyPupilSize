@@ -1,3 +1,4 @@
+pytorch-cpu
 ultralytics==8.0.196
 pillow
 numpy
