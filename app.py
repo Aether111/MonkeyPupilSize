@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import io
 import PIL.Image
 import PIL
+import pandas as pd
 
 st.title("Monkey Pupil Size Application")
 
