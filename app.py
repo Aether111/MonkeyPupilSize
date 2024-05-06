@@ -30,6 +30,9 @@ if files:
 if "data" not in st.session_state:
     st.session_state["data"] = []
 
+if "values" not in st.session_state:
+    st.session_state["values"] = []
+
 if st.button("Clear uploaded files"):
     st.session_state["file_uploader_key"] += 1
     st.experimental_rerun()
@@ -58,8 +61,24 @@ for i, video in enumerate(to_process):
             bytes_image = buf.getvalue()
 
             st.session_state["data"].append((video.name, bytes_image))
+
+            # Convert the numpy array to a DataFrame
+            df = pd.DataFrame(pupil_areas)
+        
+            # Convert DataFrame to CSV
+            csv = df.to_csv(index=False).encode('utf-8')
+
+            st.session_state["values"].append((video.name, csv))
     
             #st.pyplot(graph, use_container_width=True)
     
-for i, (name, bytes_image) in enumerate(st.session_state["data"]):
-    st.download_button(f"Download {name} Graph", data=bytes_image, file_name=f"output{i}.png", mime="image/jpeg", )
+for name, bytes_image in st.session_state["data"]:
+    st.download_button(f"Download {name} Graph", data=bytes_image, file_name=f"{name}.png", mime="image/jpeg", )
+
+for (name, csv) in st.session_state["values"]:
+    st.download_button(
+        label="Download {name} CSV",
+        data=csv,
+        file_name=f'{name}.csv',
+        mime='text/csv',
+    )
