@@ -78,7 +78,7 @@ for name, bytes_image in st.session_state["data"]:
 
 for (name, csv) in st.session_state["values"]:
     st.download_button(
-        label="Download {name} CSV",
+        label=f"Download {name} CSV",
         data=csv,
         file_name=f'{name}.csv',
         mime='text/csv',
