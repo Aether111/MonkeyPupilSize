@@ -6,6 +6,7 @@ import io
 import PIL.Image
 import PIL
 import pandas as pd
+import zipfile
 
 st.title("Monkey Pupil Size Application")
 
@@ -74,14 +75,10 @@ for i, video in enumerate(to_process):
             st.session_state["values"].append((video.name, csv))
     
             #st.pyplot(graph, use_container_width=True)
-    
-for name, bytes_image in st.session_state["data"]:
-    st.download_button(f"Download {name} Graph", data=bytes_image, file_name=f"{name}.png", mime="image/jpeg", )
 
-for (name, csv) in st.session_state["values"]:
-    st.download_button(
-        label=f"Download {name} CSV",
-        data=csv,
-        file_name=f'{name}.csv',
-        mime='text/csv',
-    )
+for (name_image, bytes_image), (name_csv, csv) in zip(st.session_state["data"], st.session_state["values"]):
+    buffer = io.BytesIO()
+    with zipfile.ZipFile(buffer, "temp") as zip:
+        zip.writestr(name_csv, csv)
+        zip.write(name_image, bytes_image)
+    st.download_button(f"Download {name_image} Package", data=buffer.getvalue(), file_name=f"{name}.zip", mime="application/zip", )
