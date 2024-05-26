@@ -36,6 +36,8 @@ if "values" not in st.session_state:
 
 if st.button("Clear uploaded files"):
     st.session_state["file_uploader_key"] += 1
+    st.session_state["data"] = []
+    st.session_state["values"] = []
     st.experimental_rerun()
 
 st.write("Uploaded files:", st.session_state["uploaded_files"])
