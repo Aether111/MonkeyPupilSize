@@ -80,5 +80,5 @@ for (name_image, bytes_image), (name_csv, csv) in zip(st.session_state["data"], 
     buffer = io.BytesIO()
     with zipfile.ZipFile(buffer, "x") as zip:
         zip.writestr(name_csv, csv)
-        zip.write(name_image, bytes_image)
+        zip.writestr(name_image, bytes_image)
     st.download_button(f"Download {name_image} Package", data=buffer.getvalue(), file_name=f"{name}.zip", mime="application/zip", )
