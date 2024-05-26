@@ -7,6 +7,7 @@ import PIL.Image
 import PIL
 import pandas as pd
 import zipfile
+import os
 
 st.title("Monkey Pupil Size Application")
 
