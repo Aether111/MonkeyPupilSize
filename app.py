@@ -78,7 +78,8 @@ for i, video in enumerate(to_process):
 
 for (name_image, bytes_image), (name_csv, csv) in zip(st.session_state["data"], st.session_state["values"]):
     buffer = io.BytesIO()
+    name = os.path.basename(name_csv)
     with zipfile.ZipFile(buffer, "x") as zip:
-        zip.writestr(name_csv, csv)
-        zip.writestr(name_image, bytes_image)
-    st.download_button(f"Download {name_image} Package", data=buffer.getvalue(), file_name=f"{name_image}.zip", mime="application/zip", )
+        zip.writestr(name+".csv", csv)
+        zip.writestr(name+".png", bytes_image)
+    st.download_button(f"Download {name} Package", data=buffer.getvalue(), file_name=f"{name}.zip", mime="application/zip", )
