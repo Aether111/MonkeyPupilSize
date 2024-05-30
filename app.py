@@ -71,7 +71,7 @@ for i, video in enumerate(to_process):
             df = pd.DataFrame(pupil_areas)
         
             # Convert DataFrame to CSV
-            csv = df.to_csv(index=False).encode('utf-8')
+            csv = df.to_csv(index=True).encode('utf-8')
 
             st.session_state["values"].append((video.name, csv))
     
