@@ -209,7 +209,7 @@ def process_video(video_path, model=None, output_path=None, save_video=False, di
 
     pupil_areas = ewma(pupil_areas)
 
-    pupil_areas = smooth_pupil_areas(pupil_areas, 25)
+    #pupil_areas = smooth_pupil_areas(pupil_areas, 25)
 
     return np.array(pupil_areas)
 
